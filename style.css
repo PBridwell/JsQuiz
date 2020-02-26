@@ -1,0 +1,54 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+.container-1 {
+    display:flex;
+    justify-content: center;
+    
+
+}
+
+.container-2 {
+    display:flex;
+    padding: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+    
+}
+
+.info {
+  
+    line-height: 1.5em;
+}
+
+
+
+
+
+.counters {
+    width: 20%;
+    background-color: seagreen;
+    color: white;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+    
+}
+
+.timer {
+    margin: 30px, auto;
+}
+
+.score {
+    margin: 30px, auto;
+}
+
+span {
+    color: yellow;
+}
