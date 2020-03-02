@@ -37,7 +37,7 @@ function nextQuestion() {
 
 function showQuestion(question) {
     console.log(questions[currentQuestionIndex].answers);
-    questionEl.innerText = questions[0].question;
+    questionEl.innerText = questions[currentQuestionIndex].question;
     questions[currentQuestionIndex].answers.forEach(answer => {
         var button = document.createElement('button')
         button.innerText = answer.text
@@ -68,7 +68,14 @@ function selectAnswer(e) {
         setStatusClass(button, button.dataset.correct);
 
     })
-        nextButton.classList.remove('hide')
+        
+        if(questions.length > currentQuestionIndex + 1) {
+            nextButton.classList.remove('hide');
+        } else {
+            startButton.innerText = 'Submit Score';
+            startButton.classList.remove('hide');
+
+        }
 
 }
 
@@ -98,7 +105,53 @@ var questions = [
             {text: 'Campinas, SP', correct: false },
             {text: 'Portland, OR', correct: false },
         ]
+    },
+    {
+        question: 'What is my favorite whiskey?',
+        answers: [
+            {text: 'High West Double Rye', correct: false },
+            {text: 'Jameson Sherry Cask', correct: false },
+            {text: 'Red Breast 12-year', correct: true },
+            {text: 'Johnnie Walker Blue', correct: false },
+        ]
+    },
+    {
+        question: 'Where did I attend university?',
+        answers: [
+            {text: 'Lewis and Clark College', correct: false },
+            {text: 'Arizona State University', correct: false },
+            {text: 'University of California Santa Cruz', correct: false },
+            {text: 'University of Arizona', correct: true },
+        ]
+    },
+    {
+        question: 'How many Passports do I hold?',
+        answers: [
+            {text: 'One', correct: false },
+            {text: 'None', correct: false },
+            {text: 'Two', correct: false },
+            {text: 'Three', correct: true },
+        ]
+    },
+    {
+        question: 'What is my middle name?',
+        answers: [
+            {text: 'Matthew', correct: false },
+            {text: 'Michael', correct: true },
+            {text: 'Kevin', correct: false },
+            {text: 'Oren', correct: false },
+        ]
+    },
+    {
+        question: 'What is my favorite color?',
+        answers: [
+            {text: 'Blue', correct: false },
+            {text: 'Green', correct: true },
+            {text: 'Purple', correct: false },
+            {text: 'Red', correct: false },
+        ]
     }
+
 
 
 ]
