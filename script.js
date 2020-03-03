@@ -3,6 +3,10 @@ var nextButton = document.getElementById('next-btn');
 var questionContainerEl = document.getElementById('question-container');
 var questionEl = document.getElementById('question');
 var answerButtonsEl = document.getElementById('answer-buttons');
+var timeEl = document.getElementById('time-count');
+var startScore = 0;
+var secondsLeft = 90;
+var totalScore = document.getElementById('score-count');
 
 
 
@@ -15,14 +19,32 @@ nextButton.addEventListener('click', () => {
     nextQuestion();
 })
 
+function setTimer() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.innerHTML = secondsLeft;
+    
+        if(secondsLeft === 0) {
+          clearInterval(timerInterval);
+          endGame();
+        }
+    
+      }, 1000);
+    }
+
+function setScore() {
+    totalScore.innerHTML = 0;
+}
+
 
 function startGame() {
 console.log('started');
 startButton.classList.add('hide');
 currentQuestionIndex = 0;
 questionContainerEl.classList.remove('hide');
+setScore();
 nextQuestion();
-
+setTimer();
 
 
 }
@@ -60,7 +82,7 @@ function resetQ() {
 }
 
 
-function selectAnswer(e) {
+function selectAnswer(e) { 
     var selectedButton = e.target;
     var correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct);
@@ -70,7 +92,7 @@ function selectAnswer(e) {
     })
         
         if(questions.length > currentQuestionIndex + 1) {
-            nextButton.classList.remove('hide');
+            nextButton.classList.remove('hide');            
         } else {
             startButton.innerText = 'Submit Score';
             startButton.classList.remove('hide');
@@ -82,9 +104,11 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
-        element.classList.add('correct')
+        element.classList.add('correct');
+        parseInt(totalScore) +2;
     } else {
-        element.classList.add('wrong')
+        element.classList.add('wrong');
+        secondsLeft-=1; 
     }
 }
 
@@ -93,9 +117,8 @@ function clearStatusClass(element) {
     element.classList.remove('wrong');
 }
 
-var test = {
-    question: "is this difficult?",
-}
+
+
 var questions = [
     {
         question: 'Where was I born?',
