@@ -6,7 +6,7 @@ var answerButtonsEl = document.getElementById('answer-buttons');
 var timeEl = document.getElementById('time-count');
 var startScore = 0;
 var secondsLeft = 90;
-var totalScore = document.getElementById('score-count');
+var totalScore = document.getElementById(parseInt('score-count'));
 
 
 
@@ -32,9 +32,9 @@ function setTimer() {
       }, 1000);
     }
 
-function setScore() {
-    totalScore.innerHTML = 0;
-}
+// function setScore() {
+//     totalScore.value = 0;
+// }
 
 
 function startGame() {
@@ -42,7 +42,7 @@ console.log('started');
 startButton.classList.add('hide');
 currentQuestionIndex = 0;
 questionContainerEl.classList.remove('hide');
-setScore();
+// setScore();
 nextQuestion();
 setTimer();
 
@@ -105,7 +105,8 @@ function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct');
-        parseInt(totalScore) +2;
+        totalScore+=2;
+        console.log(totalScore);
     } else {
         element.classList.add('wrong');
         secondsLeft-=1; 
