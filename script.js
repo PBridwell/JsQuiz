@@ -1,12 +1,25 @@
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
+var introBox = document.getElementById('intro');
+var endScreen = document.getElementById('end-screen');
+var submitButton = document.getElementById('submit-btn');
+var nameInput = document.getElementById('name-input');
+var leaderboard = document.getElementById('leaderboard');
 var questionContainerEl = document.getElementById('question-container');
 var questionEl = document.getElementById('question');
 var answerButtonsEl = document.getElementById('answer-buttons');
 var timeEl = document.getElementById('time-count');
+var finalScore = document.getElementById('final-score');
 var startScore = 0;
 var secondsLeft = 90;
-var totalScore = document.getElementById(parseInt('score-count'));
+var totalScore = document.getElementById('score-count').innerHTML;
+
+var scores = []
+
+
+console.log(totalScore);
+
+console.log(parseInt(totalScore));
 
 
 
@@ -40,6 +53,7 @@ function setTimer() {
 function startGame() {
 console.log('started');
 startButton.classList.add('hide');
+introBox.classList.add('hide')
 currentQuestionIndex = 0;
 questionContainerEl.classList.remove('hide');
 // setScore();
@@ -47,6 +61,32 @@ nextQuestion();
 setTimer();
 
 
+}
+
+function submitScore() { 
+    for (var i = 0; i < scores.length; i++) {
+        var score = todos[i];
+    
+        var score = document.createElement("li");
+        score.textContent = nameInput.value;
+        score.setAttribute("data-index", i);
+    
+
+        scores.appendChild(score);
+      }
+    }
+
+
+function endGame() {
+    // startButton.innerText = 'Submit Score';
+    // startButton.classList.remove('hide');
+
+    questionContainerEl.classList.add('hide')
+    endScreen.classList.remove('hide')
+    submitButton.classList.remove('hide')
+    submitButton.addEventListener('click', submitScore)
+    finalScore.value = parseInt(totalScore);
+    finalScore.disabled = true;
 }
 
 function nextQuestion() {
@@ -94,8 +134,9 @@ function selectAnswer(e) {
         if(questions.length > currentQuestionIndex + 1) {
             nextButton.classList.remove('hide');            
         } else {
-            startButton.innerText = 'Submit Score';
-            startButton.classList.remove('hide');
+            // startButton.innerText = 'Submit Score';
+            // startButton.classList.remove('hide');
+            endGame();
 
         }
 
@@ -105,8 +146,7 @@ function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct');
-        totalScore+=2;
-        console.log(totalScore);
+        
     } else {
         element.classList.add('wrong');
         secondsLeft-=1; 

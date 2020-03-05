@@ -9,6 +9,26 @@
 <body>
     <button id='high-scores'>High Scores</button>
     <div class='container'>
+        <div id='intro' class=''>
+            <h5>Welcome to a quiz about me. You will have 90 seconds to answer as many questions as you can. For each correct answer, you will be awarded points; each incorrect answer will deduct seconds from your remaining time. Submit your score to the leaderboard at the end of the quiz! Good luck!</h5>
+        </div>
+        <div id='end-screen' class='hide'>
+            <form>
+                <label for="fname">Initials</label><br>
+                    <input type="text" id="name-input" name="name-input" placeholder="Intitials here"><br>
+                    <label for="score">Final Score</label><br>
+                    <input type="text" id="final-score" name="final-score"><br><br>
+                    
+            </form>
+        </div>
+        <div id='score-screen' class='hide'>
+            <h5>
+                High Scores!
+            </h5>
+            <ul id='leaderboard'>
+
+            </ul>
+        </div>
         
         <div id='question-container' class='hide'>
             <div id='question'>Question</div>
@@ -19,15 +39,17 @@
                 <button class='btn'>Answer 3</button>
                 <button class='btn'>Answer 4</button>
             </div>
+            
         </div>
         <div class='controls'>
             <button id='start-btn' class='start-btn btn'>Start</button>
             <button id='next-btn' class='next-btn btn hide'>Next</button>
+            <button id='submit-btn' class='submit-btn btn hide'>Submit Score</button>
         </div>
     </div>
     <div class='scoreboard'>
         <div id='score'>
-            Score: <span id='score-count'>0</span>
+            Score: <span id='score-count'>50</span>
         </div>
         <div id='time'>Time remaining: <span id='time-count'>90</span>
         </div>
